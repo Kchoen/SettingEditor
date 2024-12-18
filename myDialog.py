@@ -18,6 +18,12 @@ class myDialog(Frame):
         self.root.title("修改")
         self.initUI(root)
 
+
+    """ //**   TODO   **// """
+    # 1. 把能設定的東西都搞上去
+    # 2. 還要加入刪除功能
+    # 3. 排版 / 可能要加入拖拉功能
+
     def initUI(self, root):
 
         self.center_frame = tk.Frame(root, bg="white")

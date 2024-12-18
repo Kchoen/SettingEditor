@@ -170,6 +170,16 @@ class BuildingFloorGUI:
                 )
         except IndexError:
             pass
+
+
+    """ //**   TODO   **// """
+
+    # 1. 把能設定的屬性都搞上去
+    # 2. 能根據樓層跟相對位置，初始化LOGO的3D位置
+    # 3. (未來式)能複製附近點的屬性
+
+
+
     # 新增點位
     def create_mark(self, event):
         """Create a new node after clicking."""
