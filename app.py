@@ -145,9 +145,13 @@ class BuildingFloorGUI:
     def select_floor(self, event):
         """Display the selected floor plan on the canvas and render nodes."""
         try:
-            index = self.floor_listbox.curselection()[0]
-            floor_name = self.floor_listbox.get(index)
-            self.selected_floor.set(floor_name)
+            try:
+                index = self.floor_listbox.curselection()[0]
+                self.floor_name = self.floor_listbox.get(index)
+                self.selected_floor.set(self.floor_name)
+            except :
+                pass
+            floor_name = self.floor_name
             self.selected_lable.config(text=f"目前顯示位置 : {floor_name}")
             self.canvas.delete("all")
             
