@@ -240,6 +240,8 @@ class BuildingFloorGUI:
                 else:
                     self.marked_nodes[self.selected_floor.get()].remove(node)
                     self.marked_nodes[self.selected_floor.get()].append(inputs["data"])
+                    # print(inputs["data"])
+                    # print(self.marked_nodes[self.selected_floor.get()])
                     self.update()
                 # if new_name:
                 #     node["destination"] = new_name
@@ -269,8 +271,7 @@ class BuildingFloorGUI:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
     def update(self):
         try:
-            if(self.selected_floor.get()):
-                self.select_floor(self.selected_floor.get())
+            self.select_floor(self.selected_floor.get())
         except:
             pass
 # Run the application
