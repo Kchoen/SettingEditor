@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import simpledialog, messagebox, filedialog
 from PIL import Image, ImageTk
+from functools import reduce
 import myDialog
 import json
 FONT_SIZE = 16
@@ -174,7 +175,7 @@ class BuildingFloorGUI:
 
     """ //**   TODO   **// """
 
-    # 1. 把能設定的屬性都搞上去
+    # 1. 把能設定的屬性都搞上去  (已完成)
     # 2. 能根據樓層跟相對位置，初始化LOGO的3D位置
     # 3. (未來式)能複製附近點的屬性
 
@@ -195,10 +196,18 @@ class BuildingFloorGUI:
                 "x": event.x, "y": event.y,
                 "destination": node_name,
                 "building": self.current_building,
+                "bureau":"公共空間",
+                "canTakeElevator": "9、11、14、16",
                 "floor": self.selected_floor.get() or "Unknown",
-                "id": len(self.marked_nodes) + 1,
-                "canTakeElevator": "2,4,5",
+                "id": reduce(lambda acc, key: acc + len(self.marked_nodes[key]), self.marked_nodes, 0) + 1,
+                "NodeId2DA":29,
+                "NodeId2DB":29,
+                "nodeIdA":28,
+                "nodeIdB":28,
+                "OtherBuildEndNodeId2D":39,
+                "OtherBuildStartNodeId2D":0,
                 "turnTo": 2
+
             }
             self.marked_nodes.get(self.selected_floor.get()).append(node)
             self.canvas.create_oval(event.x-MARK_SIZE, event.y-MARK_SIZE, event.x+MARK_SIZE, event.y+MARK_SIZE, fill="red")
@@ -211,7 +220,9 @@ class BuildingFloorGUI:
         for node in self.marked_nodes.get(self.selected_floor.get()):
             if abs(event.x - node["x"]) <= MARK_SIZE and abs(event.y - node["y"]) <= MARK_SIZE:
                 self.isHover = True
-                text = f"Destination: {node['destination']}\nID: {node['id']}\nBuilding: {node['building']}"
+                text = f"類型: {node['bureau']}\n點位名稱: {node['destination']}\nID: {node['id']}\nA/B棟: {node['building']}\n搭乘電梯: {node['canTakeElevator']}\n \
+                NodeId2DA: {node['NodeId2DA']}\nNodeId2DB: {node["NodeId2DB"]}\nnodeIdA: {node["nodeIdA"]}\nnodeIdB: {node["nodeIdB"]}\nOtherBuildEndNodeId2D: {node["OtherBuildEndNodeId2D"]}\n \
+                OtherBuildStartNodeId2D: {node["OtherBuildStartNodeId2D"]}"
                 self.hover_label.config(text=text)
                 self.hover_label.place(x=event.x + 10, y=event.y + 10)
                 return
@@ -224,6 +235,11 @@ class BuildingFloorGUI:
             if abs(event.x - node["x"]) <= MARK_SIZE and abs(event.y - node["y"]) <= MARK_SIZE:
                 inputs = myDialog.main()
                 print(inputs)
+                if(inputs["isDelete"]):
+                    self.marked_nodes[self.selected_floor.get()].remove(node)
+                    print(self.marked_nodes.get(self.selected_floor.get(), []))
+                    self.update() # renew
+                    return
                 # if new_name:
                 #     node["destination"] = new_name
                 #     self.select_floor(None)
@@ -246,10 +262,13 @@ class BuildingFloorGUI:
             try:
                 with open(file_path, "r", encoding="utf-8") as f:
                     self.marked_nodes = json.load(f)
+                    self.update()
                 messagebox.showinfo("Import Complete", "Nodes have been successfully imported.")
             except Exception as e:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
-
+    def update(self):
+        if(self.selected_floor.get()):
+            self.select_floor(self.selected_floor.get())
 # Run the application
 if __name__ == "__main__":
     root = tk.Tk()

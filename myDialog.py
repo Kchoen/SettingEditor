@@ -20,8 +20,8 @@ class myDialog(Frame):
 
 
     """ //**   TODO   **// """
-    # 1. 把能設定的東西都搞上去
-    # 2. 還要加入刪除功能
+    # 1. 加入刪除功能 (已完成)
+    # 2. 還要把能設定的東西都搞上去
     # 3. 排版 / 可能要加入拖拉功能
 
     def initUI(self, root):
@@ -77,9 +77,7 @@ class myDialog(Frame):
         self.output2 = self.entry2.get()
         self.quit()
     def onDelete(self):
-
-        self.output1 = self.entry1.get()
-        self.output2 = self.entry2.get()
+        self.isDelete = True
         self.quit()
 
 def main():
@@ -91,7 +89,7 @@ def main():
     root.mainloop()
     # Here we can act on the form components or
     # better yet, copy the output to a new variable
-    user_input = (app.output1, app.output2)
+    user_input = {"isDelete" : app.isDelete,"output1": app.output1,"output2": app.output2}
     # print(app.output1)
     # Get rid of the error message if the user clicks the
     # close icon instead of the submit button
