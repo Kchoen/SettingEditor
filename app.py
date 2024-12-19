@@ -221,8 +221,8 @@ class BuildingFloorGUI:
             if abs(event.x - int(node["x"])) <= MARK_SIZE and abs(event.y - int(node["y"])) <= MARK_SIZE:
                 self.isHover = True
                 text = f"類型: {node['bureau']}\n點位名稱: {node['destination']}\nID: {node['id']}\nA/B棟: {node['building']}\n搭乘電梯: {node['canTakeElevator']}\n \
-                NodeId2DA: {node['NodeId2DA']}\nNodeId2DB: {node["NodeId2DB"]}\nnodeIdA: {node["nodeIdA"]}\nnodeIdB: {node["nodeIdB"]}\nOtherBuildEndNodeId2D: {node["OtherBuildEndNodeId2D"]}\n \
-                OtherBuildStartNodeId2D: {node["OtherBuildStartNodeId2D"]}"
+                NodeId2DA: {node['NodeId2DA']}\nNodeId2DB: {node['NodeId2DB']}\nnodeIdA: {node['nodeIdA']}\nnodeIdB: {node['nodeIdB']}\nOtherBuildEndNodeId2D: {node['OtherBuildEndNodeId2D']}\n \
+                OtherBuildStartNodeId2D: {node['OtherBuildStartNodeId2D']}"
                 self.hover_label.config(text=text)
                 self.hover_label.place(x=event.x + 10, y=event.y + 10)
                 return
