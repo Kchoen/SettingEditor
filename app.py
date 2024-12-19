@@ -86,7 +86,7 @@ class BuildingFloorGUI:
         file_menu = tk.Menu(self.menu_bar, tearoff=0)
         file_menu.add_command(label="儲存點位設定", command=self.save_nodes_to_json)
         file_menu.add_command(label="匯入點位設定", command=self.import_nodes_from_json)
-        self.menu_bar.add_cascade(label="File", menu=file_menu)
+        self.menu_bar.add_cascade(label="儲存/匯入設定檔", menu=file_menu)
         self.root.config(menu=self.menu_bar)
     # 初始化AB棟選項及按鈕
     def create_building_selector(self):
@@ -190,7 +190,7 @@ class BuildingFloorGUI:
         if self.isHover:
             self.edit_node_properties(event)
             return
-        node_name = simpledialog.askstring("Node Name", "Enter the destination name:")
+        node_name = simpledialog.askstring("點位名稱", "輸入名稱:")
         if node_name:
             node = {
                 "x": event.x, "y": event.y,
@@ -218,7 +218,7 @@ class BuildingFloorGUI:
         if not self.selected_floor.get():
             return
         for node in self.marked_nodes.get(self.selected_floor.get()):
-            if abs(event.x - node["x"]) <= MARK_SIZE and abs(event.y - node["y"]) <= MARK_SIZE:
+            if abs(event.x - int(node["x"])) <= MARK_SIZE and abs(event.y - int(node["y"])) <= MARK_SIZE:
                 self.isHover = True
                 text = f"類型: {node['bureau']}\n點位名稱: {node['destination']}\nID: {node['id']}\nA/B棟: {node['building']}\n搭乘電梯: {node['canTakeElevator']}\n \
                 NodeId2DA: {node['NodeId2DA']}\nNodeId2DB: {node["NodeId2DB"]}\nnodeIdA: {node["nodeIdA"]}\nnodeIdB: {node["nodeIdB"]}\nOtherBuildEndNodeId2D: {node["OtherBuildEndNodeId2D"]}\n \
@@ -232,14 +232,15 @@ class BuildingFloorGUI:
     def edit_node_properties(self, event):
         
         for node in self.marked_nodes.get(self.selected_floor.get(), []):
-            if abs(event.x - node["x"]) <= MARK_SIZE and abs(event.y - node["y"]) <= MARK_SIZE:
-                inputs = myDialog.main()
-                print(inputs)
-                if(inputs["isDelete"]):
+            if abs(event.x - int(node["x"])) <= MARK_SIZE and abs(event.y - int(node["y"])) <= MARK_SIZE:
+                inputs = myDialog.main(node)
+                if(inputs["isDelete"]==True):
                     self.marked_nodes[self.selected_floor.get()].remove(node)
-                    print(self.marked_nodes.get(self.selected_floor.get(), []))
                     self.update() # renew
-                    return
+                else:
+                    self.marked_nodes[self.selected_floor.get()].remove(node)
+                    self.marked_nodes[self.selected_floor.get()].append(inputs["data"])
+                    self.update()
                 # if new_name:
                 #     node["destination"] = new_name
                 #     self.select_floor(None)
@@ -267,8 +268,11 @@ class BuildingFloorGUI:
             except Exception as e:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
     def update(self):
-        if(self.selected_floor.get()):
-            self.select_floor(self.selected_floor.get())
+        try:
+            if(self.selected_floor.get()):
+                self.select_floor(self.selected_floor.get())
+        except:
+            pass
 # Run the application
 if __name__ == "__main__":
     root = tk.Tk()
