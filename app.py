@@ -86,6 +86,7 @@ class BuildingFloorGUI:
         file_menu = tk.Menu(self.menu_bar, tearoff=0)
         file_menu.add_command(label="儲存點位設定", command=self.save_nodes_to_json)
         file_menu.add_command(label="匯入點位設定", command=self.import_nodes_from_json)
+        file_menu.add_command(label="匯入初始設定", command=self.import_nodes_from_setting)
         self.menu_bar.add_cascade(label="儲存/匯入設定檔", menu=file_menu)
         self.root.config(menu=self.menu_bar)
     # 初始化AB棟選項及按鈕
@@ -261,7 +262,7 @@ class BuildingFloorGUI:
                 json.dump(self.marked_nodes, f, ensure_ascii=False, indent=4)
             messagebox.showinfo("Save Complete", "Nodes have been successfully saved.")
 
-    # 匯出點位資訊
+    # 匯入點位資訊
     def import_nodes_from_json(self):
         """Import node data from a JSON file."""
         file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
@@ -273,6 +274,69 @@ class BuildingFloorGUI:
                 messagebox.showinfo("Import Complete", "Nodes have been successfully imported.")
             except Exception as e:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
+    def import_nodes_from_setting(self):
+        """Import node data from a JSON file."""
+        file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
+        if file_path:
+            try:
+                with open(file_path, "r", encoding="utf-8") as f:
+                    raw_data = json.load(f)
+                    
+                messagebox.showinfo("Import Complete", "Nodes have been successfully imported.")
+
+            except Exception as e:
+                messagebox.showerror("Import Error", f"匯入SETTING失敗: {e}")
+                return
+            for node in raw_data:
+                building = node.get("building", "Unknown")
+                floor = node.get("floor", "Unknown")
+                logo_position = node.get("logoPositionA", {})
+
+                if not logo_position:
+                    continue
+
+                transformed_x, transformed_y = self.transform_position(logo_position)
+                floor_key = self.map_building_floor(building, floor)
+                
+
+                new_node = {
+                    "x": transformed_x,
+                    "y": transformed_y,
+                    "destination": node.get("destination", "Unknown"),
+                    "building": floor_key.split("-")[0],
+                    "bureau": node.get("bureau", "公共空間"),
+                    "canTakeElevator": node.get("canTakeElevator", "Unknown"),
+                    "floor": floor_key,
+                    "id": len(self.marked_nodes[floor_key]) + 1,
+                    "NodeId2DA": node.get("NodeId2DA", 0),
+                    "NodeId2DB": node.get("NodeId2DB", 0),
+                    "nodeIdA": node.get("nodeIdA", 0),
+                    "nodeIdB": node.get("nodeIdB", 0),
+                    "OtherBuildEndNodeId2D": node.get("OtherBuildEndNodeId2D", 0),
+                    "OtherBuildStartNodeId2D": node.get("OtherBuildStartNodeId2D", 0),
+                    "turnTo": node.get("turnTo", 0)
+                }
+
+                self.marked_nodes[floor_key].append(new_node)
+
+    def transform_position(self,logo_position):
+        x, y, z = logo_position['x'], logo_position['y'], logo_position['z']
+        
+        if x > 0:
+            transformed_y = 1430 - (x / 11) * 900
+        else:
+            transformed_y = (-x / 11) * 900 - 400
+
+        transformed_x = 100 + ((-z) / 8) * 800
+
+        return transformed_x, transformed_y
+
+    def map_building_floor(self,building, floor):
+        building_mapping = {0: "A樓", 1: "B樓", 2: "A樓"}
+        building_name = building_mapping.get(building, f"Unknown樓")
+        return f"{building_name}-{floor}樓"
+
+    
     def update(self):
         try:
             self.select_floor(self.selected_floor.get())
