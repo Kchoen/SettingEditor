@@ -1,0 +1,1858 @@
+{
+    "A樓-1樓": [
+        {
+            "51": {
+                "x": 896.55,
+                "y": 95.97909090909093,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 1,
+                "NodeId2DA": 28,
+                "NodeId2DB": 28,
+                "nodeIdA": 51,
+                "nodeIdB": 51,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "台灣銀行"
+                    }
+                ]
+            }
+        },
+        {
+            "28": {
+                "x": 666.06,
+                "y": 95.87272727272716,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 2,
+                "NodeId2DA": 29,
+                "NodeId2DB": 29,
+                "nodeIdA": 28,
+                "nodeIdB": 28,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "郵局"
+                    },
+                    {
+                        "bureau": "公共空間",
+                        "destination": "府會園區警察隊"
+                    }
+                ]
+            }
+        },
+        {
+            "36": {
+                "x": 619.7,
+                "y": 447.11818181818194,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 4,
+                "NodeId2DA": 33,
+                "NodeId2DB": 34,
+                "nodeIdA": 36,
+                "nodeIdB": 38,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "市政願景館"
+                    }
+                ]
+            }
+        },
+        {
+            "71": {
+                "x": 940.7,
+                "y": 733.7272727272727,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 5,
+                "NodeId2DA": 11,
+                "NodeId2DB": 11,
+                "nodeIdA": 71,
+                "nodeIdB": 71,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "庇護商店"
+                    }
+                ]
+            }
+        },
+        {
+            "90": {
+                "x": 893.0,
+                "y": 126.79999999999995,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 6,
+                "NodeId2DA": 35,
+                "NodeId2DB": 35,
+                "nodeIdA": 90,
+                "nodeIdB": 90,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "盥洗室"
+                    }
+                ]
+            }
+        },
+        {
+            "93": {
+                "x": 626.0,
+                "y": 246.90909090909076,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 7,
+                "NodeId2DA": 38,
+                "NodeId2DB": 38,
+                "nodeIdA": 93,
+                "nodeIdB": 93,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 4,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "哺乳室 (惠中樓)"
+                    },
+                    {
+                        "bureau": "公共空間",
+                        "destination": "垃圾間"
+                    },
+                    {
+                        "bureau": "公共空間",
+                        "destination": "茶水間"
+                    }
+                ]
+            }
+        },
+        {
+            "60": {
+                "x": 939.1,
+                "y": 446.1363636363636,
+                "building": "A樓",
+                "canTakeElevator": "0",
+                "floor": "A樓-1樓",
+                "id": 10,
+                "NodeId2DA": 32,
+                "NodeId2DB": 31,
+                "nodeIdA": 60,
+                "nodeIdB": 41,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 0,
+                "nodes": [
+                    {
+                        "bureau": "財政局",
+                        "destination": "庫款支付科"
+                    },
+                    {
+                        "bureau": "財政局",
+                        "destination": "公產管理科"
+                    },
+                    {
+                        "bureau": "財政局",
+                        "destination": "非公用財產管理科"
+                    },
+                    {
+                        "bureau": "財政局",
+                        "destination": "菸酒管理科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-2樓": [
+        {
+            "16": {
+                "x": 667.64,
+                "y": 894.6636363636363,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-2樓",
+                "id": 1,
+                "NodeId2DA": 7,
+                "NodeId2DB": 7,
+                "nodeIdA": 16,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "代筆室"
+                    }
+                ]
+            }
+        },
+        {
+            "12": {
+                "x": 890.75,
+                "y": 95.79090909090928,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-2樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 27,
+                "nodeIdA": 12,
+                "nodeIdB": 12,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "社會局",
+                        "destination": "綜合企劃科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-3樓": [
+        {
+            "35": {
+                "x": 629.0899999999999,
+                "y": 469.929090909091,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-3樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 35,
+                "nodeIdB": 34,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "301會議室"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 930.4,
+                "y": 360.79999999999995,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-3樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 27,
+                "nodeIdB": 33,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "社會局",
+                        "destination": "長青福利科"
+                    },
+                    {
+                        "bureau": "社會局",
+                        "destination": "身心障礙福利科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-4樓": [
+        {
+            "37": {
+                "x": 700,
+                "y": 900,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7、9、11、14、16",
+                "floor": "A樓-4樓",
+                "id": 1,
+                "NodeId2DA": 7,
+                "NodeId2DB": 37,
+                "nodeIdA": 37,
+                "nodeIdB": 33,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 0,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "集會堂"
+                    }
+                ]
+            }
+        },
+        {
+            "30": {
+                "x": 670.13,
+                "y": 95.21818181818185,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-4樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 27,
+                "nodeIdA": 30,
+                "nodeIdB": 30,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "401會議室"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 934.8000000000001,
+                "y": 268.8363636363638,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-4樓",
+                "id": 3,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 27,
+                "nodeIdB": 28,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "勞工局",
+                        "destination": "綜合規劃科"
+                    },
+                    {
+                        "bureau": "勞工局",
+                        "destination": "勞資關係科"
+                    },
+                    {
+                        "bureau": "勞工局",
+                        "destination": "志工服務台"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-5樓": [
+        {
+            "31": {
+                "x": 890.9,
+                "y": 95.02181818181793,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-5樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 26,
+                "nodeIdA": 31,
+                "nodeIdB": 31,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "公用事業科"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 931.17,
+                "y": 336.1399999999999,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-5樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 27,
+                "nodeIdB": 33,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "工業科"
+                    },
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "市場管理科"
+                    },
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "商業科"
+                    },
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "工商登記科"
+                    }
+                ]
+            }
+        },
+        {
+            "35": {
+                "x": 628.3000000000001,
+                "y": 544.449090909091,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-5樓",
+                "id": 5,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 35,
+                "nodeIdB": 35,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "產業發展科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-6樓": [
+        {
+            "31": {
+                "x": 890.68,
+                "y": 95.36545454545444,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-6樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 27,
+                "nodeIdA": 31,
+                "nodeIdB": 31,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "601會議室"
+                    },
+                    {
+                        "bureau": "會議空間",
+                        "destination": "602會議室"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 929.5899999999999,
+                "y": 345.0009090909091,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-6樓",
+                "id": 3,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 27,
+                "nodeIdB": 33,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "民政局",
+                        "destination": "宗教禮俗科"
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "地方自治科"
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "區里行政科"
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "里長服務中心"
+                    }
+                ]
+            }
+        },
+        {
+            "35": {
+                "x": 628.5999999999999,
+                "y": 348.8954545454544,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-6樓",
+                "id": 6,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 35,
+                "nodeIdB": 34,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "民政局",
+                        "destination": "勤務管理科"
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "兵員徵集科"
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "戶政科"
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "企劃科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-7樓": [
+        {
+            "27": {
+                "x": 929.46,
+                "y": 363.2218181818182,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-7樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 27,
+                "nodeIdB": 33,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "財政局",
+                        "destination": "財務管理科"
+                    },
+                    {
+                        "bureau": "財政局",
+                        "destination": "非公用財產開發科"
+                    }
+                ]
+            }
+        },
+        {
+            "35": {
+                "x": 628.23,
+                "y": 367.95090909090914,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-7樓",
+                "id": 3,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 35,
+                "nodeIdB": 34,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "人事處",
+                        "destination": "給與科"
+                    },
+                    {
+                        "bureau": "人事處",
+                        "destination": "考訓科"
+                    },
+                    {
+                        "bureau": "人事處",
+                        "destination": "人力科"
+                    },
+                    {
+                        "bureau": "人事處",
+                        "destination": "企劃科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-8樓": [
+        {
+            "31": {
+                "x": 891.0,
+                "y": 95.5454545454545,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-8樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 27,
+                "nodeIdA": 31,
+                "nodeIdB": 31,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "社會局",
+                        "destination": "人民團體科"
+                    }
+                ]
+            }
+        },
+        {
+            "35": {
+                "x": 628.23,
+                "y": 333.71818181818185,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-8樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 35,
+                "nodeIdB": 34,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "文化局",
+                        "destination": "文化研究科"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 930.11,
+                "y": 338.7336363636364,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-8樓",
+                "id": 3,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 27,
+                "nodeIdB": 33,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "文化局",
+                        "destination": "文化資源科"
+                    },
+                    {
+                        "bureau": "文化局",
+                        "destination": "視覺藝術科"
+                    },
+                    {
+                        "bureau": "文化局",
+                        "destination": "表演藝術科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-9樓": [
+        {
+            "35": {
+                "x": 628.4,
+                "y": 348.9363636363637,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-9樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 8,
+                "nodeIdA": 35,
+                "nodeIdB": 34,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "9樓市政廳"
+                    }
+                ]
+            }
+        },
+        {
+            "30": {
+                "x": 668.3,
+                "y": 95.38181818181806,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-9樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 26,
+                "nodeIdA": 30,
+                "nodeIdB": 30,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "901會議室"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 930.0000000000001,
+                "y": 350.818181818182,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-9樓",
+                "id": 3,
+                "NodeId2DA": 25,
+                "NodeId2DB": 25,
+                "nodeIdA": 27,
+                "nodeIdB": 27,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "導覽簡報室"
+                    }
+                ]
+            }
+        },
+        {
+            "28": {
+                "x": 930.0000000000001,
+                "y": 537.3636363636364,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-9樓",
+                "id": 4,
+                "NodeId2DA": 25,
+                "NodeId2DB": 25,
+                "nodeIdA": 28,
+                "nodeIdB": 28,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "臺中廳"
+                    }
+                ]
+            }
+        },
+        {
+            "31": {
+                "x": 890.4399999999999,
+                "y": 95.38181818181806,
+                "building": "A樓",
+                "canTakeElevator": "3、4、6、7",
+                "floor": "A樓-9樓",
+                "id": 5,
+                "NodeId2DA": 25,
+                "NodeId2DB": 26,
+                "nodeIdA": 31,
+                "nodeIdB": 31,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "法制局",
+                        "destination": "行政執行科"
+                    }
+                ]
+            }
+        }
+    ],
+    "A樓-10樓": [
+        {
+            "54": {
+                "x": 628.5999999999999,
+                "y": 348.9445454545455,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-10樓",
+                "id": 1,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 54,
+                "nodeIdB": 35,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "員工餐廳"
+                    }
+                ]
+            }
+        },
+        {
+            "28": {
+                "x": 929.65,
+                "y": 536.8727272727272,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-10樓",
+                "id": 2,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 28,
+                "nodeIdB": 28,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "運動局",
+                        "destination": "競技運動科"
+                    },
+                    {
+                        "bureau": "運動局",
+                        "destination": "運動產業科"
+                    }
+                ]
+            }
+        },
+        {
+            "27": {
+                "x": 929.65,
+                "y": 355.1545454545453,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-10樓",
+                "id": 4,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 27,
+                "nodeIdB": 27,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "建設局",
+                        "destination": "職安品管科"
+                    },
+                    {
+                        "bureau": "建設局",
+                        "destination": "公園景觀管理科"
+                    }
+                ]
+            }
+        },
+        {
+            "30": {
+                "x": 670.2,
+                "y": 95.29181818181837,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-10樓",
+                "id": 6,
+                "NodeId2DA": 25,
+                "NodeId2DB": 27,
+                "nodeIdA": 30,
+                "nodeIdB": 30,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "建設局",
+                        "destination": "企劃科"
+                    }
+                ]
+            }
+        },
+        {
+            "34": {
+                "x": 628.5999999999999,
+                "y": 726.4045454545453,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "floor": "A樓-10樓",
+                "id": 7,
+                "NodeId2DA": 25,
+                "NodeId2DB": 9,
+                "nodeIdA": 34,
+                "nodeIdB": 34,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "社會局",
+                        "destination": "社會救助科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-1樓": [
+        {
+            "72": {
+                "x": 891.31,
+                "y": 891.0090909090909,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 1,
+                "NodeId2DA": 8,
+                "NodeId2DB": 8,
+                "nodeIdA": 72,
+                "nodeIdB": 72,
+                "OtherBuildEndNodeId2D": 1,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "便利商店"
+                    }
+                ]
+            }
+        },
+        {
+            "91": {
+                "x": 895.0,
+                "y": 743.409090909091,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 2,
+                "NodeId2DA": 41,
+                "NodeId2DB": 41,
+                "nodeIdA": 91,
+                "nodeIdB": 91,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "盥洗室"
+                    }
+                ]
+            }
+        },
+        {
+            "92": {
+                "x": 647.0,
+                "y": 601.8636363636363,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 3,
+                "NodeId2DA": 42,
+                "NodeId2DB": 42,
+                "nodeIdA": 92,
+                "nodeIdB": 92,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 3,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "哺乳室 (文心樓)"
+                    },
+                    {
+                        "bureau": "公共空間",
+                        "destination": "垃圾間"
+                    },
+                    {
+                        "bureau": "公共空間",
+                        "destination": "茶水間"
+                    }
+                ]
+            }
+        },
+        {
+            "48": {
+                "x": 669.0,
+                "y": 772.4545454545455,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 6,
+                "NodeId2DA": 7,
+                "NodeId2DB": 7,
+                "nodeIdA": 48,
+                "nodeIdB": 48,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "市府員工子女托嬰中心"
+                    }
+                ]
+            }
+        },
+        {
+            "14": {
+                "x": 616.2099999999999,
+                "y": 422.14181818181817,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 7,
+                "NodeId2DA": 25,
+                "NodeId2DB": 25,
+                "nodeIdA": 14,
+                "nodeIdB": 14,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 0,
+                "nodes": [
+                    {
+                        "bureau": "經濟發展局",
+                        "destination": "公司登記"
+                    }
+                ]
+            }
+        },
+        {
+            "9": {
+                "x": 939.0,
+                "y": 233.43636363636358,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 8,
+                "NodeId2DA": 29,
+                "NodeId2DB": 28,
+                "nodeIdA": 11,
+                "nodeIdB": 9,
+                "OtherBuildEndNodeId2D": 1,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 0,
+                "nodes": [
+                    {
+                        "bureau": "新市政服務中心",
+                        "destination": "研究發展考核委員會"
+                    },
+                    {
+                        "bureau": "新市政服務中心",
+                        "destination": "為民服務組"
+                    },
+                    {
+                        "bureau": "研究發展考核委員會",
+                        "destination": "為民服務組"
+                    }
+                ]
+            }
+        },
+        {
+            "66": {
+                "x": 614.5,
+                "y": 514.4818181818182,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 10,
+                "NodeId2DA": 24,
+                "NodeId2DB": 24,
+                "nodeIdA": 66,
+                "nodeIdB": 66,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 0,
+                "nodes": [
+                    {
+                        "bureau": "勞工局",
+                        "destination": "市政就業服務台"
+                    }
+                ]
+            }
+        },
+        {
+            "16": {
+                "x": 614.4,
+                "y": 141.39090909090908,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "floor": "B樓-1樓",
+                "id": 11,
+                "NodeId2DA": 27,
+                "NodeId2DB": 26,
+                "nodeIdA": 69,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "文檔科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-2樓": [
+        {
+            "6": {
+                "x": 666.06,
+                "y": 772.9454545454546,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-2樓",
+                "id": 1,
+                "NodeId2DA": 13,
+                "NodeId2DB": 13,
+                "nodeIdA": 6,
+                "nodeIdB": 6,
+                "OtherBuildEndNodeId2D": 1,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "秘書室"
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "人事室"
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "會計室"
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "政風室"
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "系統規劃科"
+                    }
+                ]
+            }
+        },
+        {
+            "4": {
+                "x": 891.0300000000001,
+                "y": 772.9454545454546,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-2樓",
+                "id": 6,
+                "NodeId2DA": 13,
+                "NodeId2DB": 13,
+                "nodeIdA": 4,
+                "nodeIdB": 4,
+                "OtherBuildEndNodeId2D": 1,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "勞工局",
+                        "destination": "電話服務中心"
+                    },
+                    {
+                        "bureau": "政風處",
+                        "destination": "政風業務訪談室"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-3樓": [
+        {
+            "6": {
+                "x": 665.23,
+                "y": 774.5,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-3樓",
+                "id": 1,
+                "NodeId2DA": 11,
+                "NodeId2DB": 5,
+                "nodeIdA": 6,
+                "nodeIdB": 6,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "303會議室"
+                    }
+                ]
+            }
+        },
+        {
+            "16": {
+                "x": 630.3,
+                "y": 518.1636363636362,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-3樓",
+                "id": 2,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 16,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "代筆室/總機"
+                    }
+                ]
+            }
+        },
+        {
+            "32": {
+                "x": 931.05,
+                "y": 69.15363636363634,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-3樓",
+                "id": 3,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 32,
+                "nodeIdB": 32,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "公共關係科"
+                    }
+                ]
+            }
+        },
+        {
+            "36": {
+                "x": 630.3,
+                "y": 28.350909090909113,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-3樓",
+                "id": 4,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 15,
+                "nodeIdB": 36,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "建設局",
+                        "destination": "緊急應變小組"
+                    },
+                    {
+                        "bureau": "建設局",
+                        "destination": "機電資訊科"
+                    },
+                    {
+                        "bureau": "建設局",
+                        "destination": "道路管理科"
+                    }
+                ]
+            }
+        },
+        {
+            "8": {
+                "x": 934.0,
+                "y": 68.81818181818187,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-3樓",
+                "id": 7,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 32,
+                "nodeIdB": 8,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "社會局",
+                        "destination": "兒少福利科"
+                    },
+                    {
+                        "bureau": "社會局",
+                        "destination": "兒童托育科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-4樓": [
+        {
+            "43": {
+                "x": 933.0999999999999,
+                "y": 142.45454545454538,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-4樓",
+                "id": 1,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 42,
+                "nodeIdB": 43,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "勞工局",
+                        "destination": "勞動基準科"
+                    },
+                    {
+                        "bureau": "勞工局",
+                        "destination": "福利促進科"
+                    },
+                    {
+                        "bureau": "勞工局",
+                        "destination": "就業安全科"
+                    }
+                ]
+            }
+        },
+        {
+            "16": {
+                "x": 629.1999999999999,
+                "y": 60.63636363636368,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-4樓",
+                "id": 4,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 15,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "廳舍管理科"
+                    },
+                    {
+                        "bureau": "秘書處",
+                        "destination": "總務科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-5樓": [
+        {
+            "8": {
+                "x": 931.1299999999999,
+                "y": 128.77454545454543,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-5樓",
+                "id": 1,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 32,
+                "nodeIdB": 8,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "新建工程處",
+                        "destination": "建築工程科"
+                    },
+                    {
+                        "bureau": "新建工程處",
+                        "destination": "土木工程科"
+                    },
+                    {
+                        "bureau": "建設局",
+                        "destination": "建築工程管理科"
+                    },
+                    {
+                        "bureau": "建設局",
+                        "destination": "土木工程管理科"
+                    }
+                ]
+            }
+        },
+        {
+            "16": {
+                "x": 629.43,
+                "y": 128.63545454545454,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-5樓",
+                "id": 2,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 15,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "新建工程處",
+                        "destination": "用地科"
+                    },
+                    {
+                        "bureau": "新建工程處",
+                        "destination": "公園景觀工程科"
+                    }
+                ]
+            }
+        },
+        {
+            "6": {
+                "x": 667.8,
+                "y": 774.3609090909092,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-5樓",
+                "id": 7,
+                "NodeId2DA": 11,
+                "NodeId2DB": 12,
+                "nodeIdA": 6,
+                "nodeIdB": 6,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "建設局",
+                        "destination": "機電工程科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-6樓": [
+        {
+            "16": {
+                "x": 629.3199999999999,
+                "y": 438.08818181818174,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-6樓",
+                "id": 1,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 15,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "數位匯流科"
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "整合應用科"
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "創新服務科"
+                    }
+                ]
+            }
+        },
+        {
+            "8": {
+                "x": 930.7,
+                "y": 145.30181818181813,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-6樓",
+                "id": 4,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 32,
+                "nodeIdB": 8,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "研究發展考核委員會",
+                        "destination": "研究發展組"
+                    },
+                    {
+                        "bureau": "研究發展考核委員會",
+                        "destination": "工程品質管理組"
+                    },
+                    {
+                        "bureau": "研究發展考核委員會",
+                        "destination": "管制考核組"
+                    },
+                    {
+                        "bureau": "研究發展考核委員會",
+                        "destination": "綜合規劃組"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-7樓": [
+        {
+            "4": {
+                "x": 884.0,
+                "y": 773.5754545454545,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-7樓",
+                "id": 1,
+                "NodeId2DA": 11,
+                "NodeId2DB": 11,
+                "nodeIdA": 4,
+                "nodeIdB": 4,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "採購管理科"
+                    }
+                ]
+            }
+        },
+        {
+            "16": {
+                "x": 629.3199999999999,
+                "y": 158.17999999999995,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-7樓",
+                "id": 2,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 15,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "主計處",
+                        "destination": "第一科"
+                    },
+                    {
+                        "bureau": "主計處",
+                        "destination": "第五科"
+                    }
+                ]
+            }
+        },
+        {
+            "8": {
+                "x": 930.7,
+                "y": 125.3709090909091,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-7樓",
+                "id": 3,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 32,
+                "nodeIdB": 8,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "主計處",
+                        "destination": "第二科"
+                    },
+                    {
+                        "bureau": "主計處",
+                        "destination": "第三科"
+                    },
+                    {
+                        "bureau": "主計處",
+                        "destination": "第四科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-8樓": [
+        {
+            "4": {
+                "x": 890.6,
+                "y": 774.4836363636362,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-8樓",
+                "id": 1,
+                "NodeId2DA": 11,
+                "NodeId2DB": 13,
+                "nodeIdA": 4,
+                "nodeIdB": 4,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "會議空間",
+                        "destination": "801會議室"
+                    }
+                ]
+            }
+        },
+        {
+            "16": {
+                "x": 629.1,
+                "y": 254.16909090909087,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-8樓",
+                "id": 2,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 15,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "新聞局",
+                        "destination": "新聞聯繫科"
+                    },
+                    {
+                        "bureau": "新聞局",
+                        "destination": "行銷企劃科"
+                    }
+                ]
+            }
+        },
+        {
+            "8": {
+                "x": 930.8299999999999,
+                "y": 236.05454545454552,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-8樓",
+                "id": 4,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 32,
+                "nodeIdB": 8,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "新聞局",
+                        "destination": "新聞行政及流行音樂科"
+                    },
+                    {
+                        "bureau": "新聞局",
+                        "destination": "影視發展科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-9樓": [
+        {
+            "6": {
+                "x": 667.61,
+                "y": 774.540909090909,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-9樓",
+                "id": 1,
+                "NodeId2DA": 11,
+                "NodeId2DB": 12,
+                "nodeIdA": 6,
+                "nodeIdB": 6,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "國際事務科"
+                    },
+                    {
+                        "bureau": "秘書處",
+                        "destination": "機要科"
+                    }
+                ]
+            }
+        },
+        {
+            "8": {
+                "x": 931.1999999999999,
+                "y": 158.81818181818187,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "floor": "B樓-9樓",
+                "id": 3,
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 32,
+                "nodeIdB": 8,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "政風處",
+                        "destination": "第一科"
+                    },
+                    {
+                        "bureau": "政風處",
+                        "destination": "第二科"
+                    },
+                    {
+                        "bureau": "政風處",
+                        "destination": "第三科"
+                    },
+                    {
+                        "bureau": "政風處",
+                        "destination": "第四科"
+                    }
+                ]
+            }
+        }
+    ],
+    "B樓-10樓": [
+        {
+            "16": {
+                "x": 629.43,
+                "y": 143.43636363636358,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-10樓",
+                "id": 1,
+                "NodeId2DA": 35,
+                "NodeId2DB": 13,
+                "nodeIdA": 15,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "法制局",
+                        "destination": "法制行政科"
+                    },
+                    {
+                        "bureau": "法制局",
+                        "destination": "法規審議科"
+                    },
+                    {
+                        "bureau": "法制局",
+                        "destination": "行政救濟科"
+                    },
+                    {
+                        "bureau": "法制局",
+                        "destination": "採購申訴審議科"
+                    }
+                ]
+            }
+        },
+        {
+            "6": {
+                "x": 667.8,
+                "y": 774.540909090909,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-10樓",
+                "id": 5,
+                "NodeId2DA": 11,
+                "NodeId2DB": 13,
+                "nodeIdA": 6,
+                "nodeIdB": 6,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "法制局",
+                        "destination": "法律諮詢處"
+                    }
+                ]
+            }
+        },
+        {
+            "4": {
+                "x": 890.7,
+                "y": 774.540909090909,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "floor": "B樓-10樓",
+                "id": 6,
+                "NodeId2DA": 11,
+                "NodeId2DB": 13,
+                "nodeIdA": 4,
+                "nodeIdB": 4,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "法制局",
+                        "destination": "消費者服務中心"
+                    }
+                ]
+            }
+        }
+    ]
+}

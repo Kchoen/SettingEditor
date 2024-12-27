@@ -1,83 +1,150 @@
-
-#### Save this as dual_input.py ####
-#! /usr/bin/env python
-# -*- coding: utf-8 -*-
 import tkinter as tk
-from tkinter import Frame, Label, Entry, Button, StringVar, IntVar
+from tkinter import ttk
 
-# Good habit to put your GUI in a class to make it self-contained
-class myDialog(Frame):
-
-    def __init__(self, root, node):
-        # self allow the variable to be used anywhere in the class
-        super().__init__()
-        self.root = root
-        self.root.title("修改")
-        self.data = {}
-        self.isDelete = False
-        self.entries = {}
-        self.initUI(node)
-
-
-    """ //**   TODO   **// """
-    # 1. 加入刪除功能 (已完成)
-    # 2. 還要把能設定的東西都搞上去
-    # 3. 排版 / 可能要加入拖拉功能
-
-    def initUI(self, node):
-
-        frame = Frame(self.root)
-        frame.pack(padx=10, pady=10)
-        # Dynamic creation of input fields
-        for idx, (key) in enumerate(node):
-            lbl = Label(frame, text=key, width=20, anchor="e")
-            lbl.grid(row=idx, column=0, padx=5, pady=5, sticky="e")
-            entry = Entry(frame,  width=30)
-            entry.insert(0,node[key])
-            entry.grid(row=idx, column=1, padx=5, pady=5, sticky="w")
-            self.entries[key] = entry
-        # Buttons for actions
-        btn_submit = Button(frame, text="確認", command=self.onSubmit)
-        btn_submit.grid(row=len(node), column=0, padx=5, pady=10, sticky="e")
-
-        btn_delete = Button(frame, text="刪除", command=self.onDelete)
-        btn_delete.grid(row=len(node), column=1, padx=5, pady=10, sticky="w")
-
-    def onSubmit(self):
+class NodeDialog:
+    def __init__(self, parent, node_data):
+        self.top = tk.Toplevel(parent)
+        self.result = {"isDelete": False, "data": node_data}
+        self.node_data = node_data.copy()
+        self.cancelled = True  # Add flag to track if dialog was cancelled
         
-        self.data = {key: int(var.get()) if var.get().isdigit() else var.get() for key, var in self.entries.items()}
-        self.quit()
-    def onDelete(self):
-        self.isDelete = True
-        self.quit()
+        # Create main frame
+        main_frame = ttk.Frame(self.top, padding="10")
+        main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Create position coordinates section first
+        ttk.Label(main_frame, text="Position Coordinates").grid(row=0, column=0, columnspan=2, sticky=tk.W)
+        coord_frame = ttk.Frame(main_frame)
+        coord_frame.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E))
+        
+        # X coordinate
+        ttk.Label(coord_frame, text="X:").grid(row=0, column=0, sticky=tk.W)
+        self.x_entry = ttk.Entry(coord_frame, width=10)
+        self.x_entry.insert(0, str(node_data.get('x', '')))
+        self.x_entry.grid(row=0, column=1, padx=5)
+        
+        # Y coordinate
+        ttk.Label(coord_frame, text="Y:").grid(row=0, column=2, sticky=tk.W)
+        self.y_entry = ttk.Entry(coord_frame, width=10)
+        self.y_entry.insert(0, str(node_data.get('y', '')))
+        self.y_entry.grid(row=0, column=3, padx=5)
+        
+        # Create basic information fields
+        row = 2
+        for field in ['building', 'floor', 'canTakeElevator', 'NodeId2DA', 'NodeId2DB', 
+                     'nodeIdA', 'nodeIdB', 'OtherBuildEndNodeId2D', 'OtherBuildStartNodeId2D', 'turnTo']:
+            ttk.Label(main_frame, text=field).grid(row=row, column=0, sticky=tk.W)
+            entry = ttk.Entry(main_frame)
+            entry.insert(0, str(node_data.get(field, '')))
+            entry.grid(row=row, column=1, sticky=(tk.W, tk.E))
+            setattr(self, f'{field}_entry', entry)
+            row += 1
+        
+        # Create nodes section (destinations and bureaus)
+        ttk.Label(main_frame, text="Destinations").grid(row=row, column=0, columnspan=2, sticky=tk.W)
+        row += 1
+        
+        self.nodes_frame = ttk.Frame(main_frame)
+        self.nodes_frame.grid(row=row, column=0, columnspan=2, sticky=(tk.W, tk.E))
+        
+        self.node_entries = []
+        for dest_data in node_data.get('nodes', []):
+            self.add_destination_entry(dest_data)
+        
+        # Add/Remove destination buttons
+        button_frame = ttk.Frame(main_frame)
+        button_frame.grid(row=row+1, column=0, columnspan=2, sticky=(tk.W, tk.E))
+        ttk.Button(button_frame, text="Add Destination", command=self.add_destination_entry).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="Remove Destination", command=self.remove_destination_entry).pack(side=tk.LEFT)
+        
+        # OK/Cancel buttons
+        button_frame = ttk.Frame(main_frame)
+        button_frame.grid(row=row+2, column=0, columnspan=2, sticky=(tk.W, tk.E))
+        ttk.Button(button_frame, text="OK", command=self.on_ok).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="Cancel", command=self.on_cancel).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="Delete", command=self.on_delete).pack(side=tk.LEFT)
+        
+        # Make dialog modal
+        self.top.transient(parent)
+        self.top.grab_set()
+        parent.wait_window(self.top)
+        
+    def add_destination_entry(self, dest_data=None):
+        entry_frame = ttk.Frame(self.nodes_frame)
+        entry_frame.pack(fill=tk.X)
+        
+        # Add labels for each field
+        ttk.Label(entry_frame, text="Destination:").pack(side=tk.LEFT)
+        dest_entry = ttk.Entry(entry_frame, width=30)
+        if dest_data:
+            dest_entry.insert(0, dest_data['destination'])
+        dest_entry.pack(side=tk.LEFT, padx=5)
+        
+        ttk.Label(entry_frame, text="Bureau:").pack(side=tk.LEFT)
+        bureau_entry = ttk.Entry(entry_frame, width=30)
+        if dest_data:
+            bureau_entry.insert(0, dest_data['bureau'])
+        bureau_entry.pack(side=tk.LEFT, padx=5)
+        
+        self.node_entries.append((dest_entry, bureau_entry))
+    
+    def remove_destination_entry(self):
+        if self.node_entries:
+            dest_entry, bureau_entry = self.node_entries.pop()
+            dest_entry.master.destroy()
+    
+    def on_ok(self):
+        try:
+            # Update coordinates
+            self.node_data['x'] = float(self.x_entry.get())
+            self.node_data['y'] = float(self.y_entry.get())
+            
+            # Update basic fields
+            for field in ['building', 'floor', 'canTakeElevator', 'NodeId2DA', 'NodeId2DB', 
+                         'nodeIdA', 'nodeIdB', 'OtherBuildEndNodeId2D', 'OtherBuildStartNodeId2D', 'turnTo']:
+                entry_value = getattr(self, f'{field}_entry').get()
+                # Convert numeric fields to integers
+                if field in ['NodeId2DA', 'NodeId2DB', 'nodeIdA', 'nodeIdB', 
+                            'OtherBuildEndNodeId2D', 'OtherBuildStartNodeId2D', 'turnTo']:
+                    try:
+                        self.node_data[field] = int(entry_value)
+                    except ValueError:
+                        self.node_data[field] = 0
+                else:
+                    self.node_data[field] = entry_value
+            
+            # Update nodes array
+            self.node_data['nodes'] = []
+            for dest_entry, bureau_entry in self.node_entries:
+                if dest_entry.get() and bureau_entry.get():
+                    self.node_data['nodes'].append({
+                        'destination': dest_entry.get(),
+                        'bureau': bureau_entry.get()
+                    })
+            
+            self.result = {"isDelete": False, "data": self.node_data}
+            self.cancelled = False
+            self.top.destroy()
+        except ValueError as e:
+            tk.messagebox.showerror("Error", "Invalid coordinate values. Please enter numbers only.")
 
-def main(node):
+    def on_cancel(self):
+        # Keep the original data on cancel
+        self.result = {"isDelete": False, "data": self.node_data}
+        self.cancelled = True
+        self.top.destroy()
 
-    # This part triggers the dialog
+    def on_delete(self):
+        self.result = {"isDelete": True, "data": self.node_data}
+        self.cancelled = False
+        self.top.destroy()
+
+def main(node_data):
     root = tk.Tk()
-    root.geometry("400x550")
-    app = myDialog(root, node)
-    root.mainloop()
-    # Here we can act on the form components or
-    # better yet, copy the output to a new variable
-    user_input = {"isDelete" : app.isDelete,"data": app.data}
-    # Get rid of the error message if the user clicks the
-    # close icon instead of the submit button
-    # Any component of the dialog will no longer be available
-    # past this point
-    try:
-        app.destroy()
-        root.destroy()
-    except:
-        pass
-    # To use data outside of function
-    # Can either be used in __main__
-    # or by external script depending on
-    # what calls main()
-    return user_input
-
-# Allow dialog to run either as a script or called from another program
-if __name__ == '__main__':
-    follow_on_variable = main()
-    # This shows the outputs captured when called directly as `python dual_input.py`
-    print(follow_on_variable)
+    dialog = NodeDialog(root, node_data)
+    if dialog.cancelled:
+        result = {"isDelete": False, "data": node_data}
+    else:
+        result = dialog.result
+    root.destroy()
+    return result

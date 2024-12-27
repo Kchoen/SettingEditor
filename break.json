@@ -52,23 +52,6 @@
             "turnTo": 1
         },
         {
-            "x": 619.7,
-            "y": 447.11818181818194,
-            "destination": "市政願景館",
-            "building": "A樓",
-            "bureau": "公共空間",
-            "canTakeElevator": "0",
-            "floor": "A樓-1樓",
-            "id": 4,
-            "NodeId2DA": 33,
-            "NodeId2DB": 34,
-            "nodeIdA": 36,
-            "nodeIdB": 38,
-            "OtherBuildEndNodeId2D": 39,
-            "OtherBuildStartNodeId2D": 0,
-            "turnTo": 1
-        },
-        {
             "x": 940.7,
             "y": 733.7272727272727,
             "destination": "庇護商店",
@@ -220,6 +203,23 @@
             "OtherBuildEndNodeId2D": 44,
             "OtherBuildStartNodeId2D": 1,
             "turnTo": 0
+        },
+        {
+            "x": "619.7",
+            "y": 447,
+            "destination": "市政願景館",
+            "building": "A樓",
+            "bureau": "公共空間",
+            "canTakeElevator": 0,
+            "floor": "A樓-1樓",
+            "id": 4,
+            "NodeId2DA": 33,
+            "NodeId2DB": 34,
+            "nodeIdA": 36,
+            "nodeIdB": 38,
+            "OtherBuildEndNodeId2D": 39,
+            "OtherBuildStartNodeId2D": 0,
+            "turnTo": 1
         }
     ],
     "A樓-2樓": [

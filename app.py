@@ -78,6 +78,7 @@ class BuildingFloorGUI:
         self.create_building_selector()
         self.create_floor_list()
         self.create_floor_canvas()
+        self.init_setting()
 
     # MENU選單選項設定(儲存/匯入點位設定)
     def create_menu(self):
@@ -86,7 +87,6 @@ class BuildingFloorGUI:
         file_menu = tk.Menu(self.menu_bar, tearoff=0)
         file_menu.add_command(label="儲存點位設定", command=self.save_nodes_to_json)
         file_menu.add_command(label="匯入點位設定", command=self.import_nodes_from_json)
-        file_menu.add_command(label="匯入初始設定", command=self.import_nodes_from_setting)
         self.menu_bar.add_cascade(label="儲存/匯入設定檔", menu=file_menu)
         self.root.config(menu=self.menu_bar)
     # 初始化AB棟選項及按鈕
@@ -150,7 +150,7 @@ class BuildingFloorGUI:
                 index = self.floor_listbox.curselection()[0]
                 self.floor_name = self.floor_listbox.get(index)
                 self.selected_floor.set(self.floor_name)
-            except :
+            except:
                 pass
             floor_name = self.floor_name
             self.selected_lable.config(text=f"目前顯示位置 : {floor_name}")
@@ -158,17 +158,20 @@ class BuildingFloorGUI:
             
             image_path = self.floor_images.get(floor_name, "./image/1F.jpg")
             try:
-                # 顯示圖片
+                # Display image
                 img = Image.open(image_path)
                 self.image = img.resize((self.canvas.winfo_width()//2, self.canvas.winfo_height()))
                 self.floor_image = ImageTk.PhotoImage(self.image)
                 self.canvas.create_image(self.canvas.winfo_width() // 2, self.canvas.winfo_height() // 2, image=self.floor_image)
 
-                # 顯示點位
+                # Display nodes
                 for node in self.marked_nodes.get(floor_name, []):
-                    x, y, node_name = node.get('x'), node.get('y'), node.get('destination')
+                    x, y = node.get('x'), node.get('y')
+                    key = node.get('nodeIdA') if "A樓" in node.get('floor') else node.get('nodeIdB')
+                    # Get primary destination from first node
+                    # node_name = node['nodes'][0]['destination'] if node['nodes'] else "Unknown"
                     self.canvas.create_oval(x-MARK_SIZE, y-MARK_SIZE, x+MARK_SIZE, y+MARK_SIZE, fill="red")
-                    self.canvas.create_text(x, y-2*MARK_SIZE, text=node_name, fill="blue",font=("Arial", FONT_SIZE))
+                    self.canvas.create_text(x, y-2*MARK_SIZE, text=key, fill="blue", font=("Arial", FONT_SIZE))
                 self.canvas.pack()
             except Exception:
                 self.canvas.create_text(
@@ -176,7 +179,6 @@ class BuildingFloorGUI:
                 )
         except IndexError:
             pass
-
 
     """ //**   TODO   **// """
 
@@ -195,45 +197,72 @@ class BuildingFloorGUI:
         if self.isHover:
             self.edit_node_properties(event)
             return
+            
+        bureau = simpledialog.askstring("局處", "輸入局處名稱:")
+        if not bureau:
+            return
+            
         node_name = simpledialog.askstring("點位名稱", "輸入名稱:")
         if node_name:
+            # Get new node ID based on building
+            max_id = max([
+                (node['nodeIdA'] if 'A樓' in node['building'] else node['nodeIdB'])
+                for floor_nodes in self.marked_nodes.values()
+                for node in floor_nodes
+            ], default=0) + 1
+            
             node = {
-                "x": event.x, "y": event.y,
-                "destination": node_name,
+                "x": event.x,
+                "y": event.y,
                 "building": self.current_building,
-                "bureau":"公共空間",
-                "canTakeElevator": "9、11、14、16",
-                "floor": self.selected_floor.get() or "Unknown",
-                "id": reduce(lambda acc, key: acc + len(self.marked_nodes[key]), self.marked_nodes, 0) + 1,
-                "NodeId2DA":29,
-                "NodeId2DB":29,
-                "nodeIdA":28,
-                "nodeIdB":28,
-                "OtherBuildEndNodeId2D":39,
-                "OtherBuildStartNodeId2D":0,
-                "turnTo": 2
-
+                "canTakeElevator": "0",
+                "floor": self.selected_floor.get(),
+                "id": len(self.marked_nodes[self.selected_floor.get()]) + 1,
+                "NodeId2DA": 0,
+                "NodeId2DB": 0,
+                "nodeIdA": max_id if 'A樓' in self.current_building else 0,
+                "nodeIdB": max_id if 'B樓' in self.current_building else 0,
+                "OtherBuildEndNodeId2D": 0,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 0,
+                "nodes": [{"bureau": bureau, "destination": node_name}]
             }
+            
             self.marked_nodes.get(self.selected_floor.get()).append(node)
-            self.canvas.create_oval(event.x-MARK_SIZE, event.y-MARK_SIZE, event.x+MARK_SIZE, event.y+MARK_SIZE, fill="red")
-            self.canvas.create_text(event.x, event.y-2*MARK_SIZE, text=node_name, fill="blue",font=("Arial", FONT_SIZE))
+            self.canvas.create_oval(
+                event.x-MARK_SIZE, y=event.y-MARK_SIZE, 
+                x2=event.x+MARK_SIZE, y2=event.y+MARK_SIZE, 
+                fill="red"
+            )
+            self.canvas.create_text(
+                event.x, event.y-2*MARK_SIZE, 
+                text=f"{node_name}", 
+                fill="blue",
+                font=("Arial", FONT_SIZE)
+            )
     # 浮現點位資訊
     def hover_node(self, event):
         """Display node details when hovering over a marked point."""
         if not self.selected_floor.get():
             return
         for node in self.marked_nodes.get(self.selected_floor.get()):
-            if abs(event.x - int(node["x"])) <= MARK_SIZE and abs(event.y - int(node["y"])) <= MARK_SIZE:
+            if abs(event.x - float(node["x"])) <= MARK_SIZE and abs(event.y - float(node["y"])) <= MARK_SIZE:
                 self.isHover = True
-                text = f"類型: {node['bureau']}\n點位名稱: {node['destination']}\nID: {node['id']}\nA/B棟: {node['building']}\n搭乘電梯: {node['canTakeElevator']}\n \
-                NodeId2DA: {node['NodeId2DA']}\nNodeId2DB: {node['NodeId2DB']}\nnodeIdA: {node['nodeIdA']}\nnodeIdB: {node['nodeIdB']}\nOtherBuildEndNodeId2D: {node['OtherBuildEndNodeId2D']}\n \
-                OtherBuildStartNodeId2D: {node['OtherBuildStartNodeId2D']}"
+                # Get the appropriate nodeId based on building
+                node_id = node['nodeIdA'] if 'A樓' in node['building'] else node['nodeIdB']
+                
+                # Create destination list text
+                destinations_text = "\nDestinations:"
+                for dest in node["nodes"]:
+                    destinations_text += f"\n- {dest['destination']} ({dest['bureau']})"
+                
+                text = f"NodeID: {node_id}" + destinations_text
                 self.hover_label.config(text=text)
                 self.hover_label.place(x=event.x + 10, y=event.y + 10)
                 return
         self.isHover = False
         self.hover_label.place_forget()
-   
+    
     def edit_node_properties(self, event):
         
         for node in self.marked_nodes.get(self.selected_floor.get(), []):
@@ -255,88 +284,128 @@ class BuildingFloorGUI:
             
     # 儲存點位資訊
     def save_nodes_to_json(self):
-        """Save the marked nodes to a JSON file."""
+        """Save the marked nodes to a JSON file in the transformed format."""
         file_path = filedialog.asksaveasfilename(defaultextension=".json", filetypes=[("JSON files", "*.json")])
         if file_path:
-            with open(file_path, "w", encoding="utf-8") as f:
-                json.dump(self.marked_nodes, f, ensure_ascii=False, indent=4)
-            messagebox.showinfo("Save Complete", "Nodes have been successfully saved.")
+            # Transform the data to the new format
+            transformed_data = {}
+            
+            for floor, nodes in self.marked_nodes.items():
+                transformed_data[floor] = []
+                
+                # Group nodes by their node ID
+                grouped_by_id = {}
+                for node in nodes:
+                    node_id = str(node['nodeIdA'] if 'A樓' in node['building'] else node['nodeIdB'])
+                    if node_id not in grouped_by_id:
+                        grouped_by_id[node_id] = {
+                            "x": node["x"],
+                            "y": node["y"],
+                            "building": node["building"],
+                            "canTakeElevator": node["canTakeElevator"],
+                            "floor": node["floor"],
+                            "id": node["id"],
+                            "NodeId2DA": node["NodeId2DA"],
+                            "NodeId2DB": node["NodeId2DB"],
+                            "nodeIdA": node["nodeIdA"],
+                            "nodeIdB": node["nodeIdB"],
+                            "OtherBuildEndNodeId2D": node["OtherBuildEndNodeId2D"],
+                            "OtherBuildStartNodeId2D": node["OtherBuildStartNodeId2D"],
+                            "turnTo": node["turnTo"],
+                            "nodes": node["nodes"]
+                        }
+                
+                # Convert grouped nodes to the desired format
+                for node_id, node_data in grouped_by_id.items():
+                    transformed_data[floor].append({
+                        node_id: node_data
+                    })
+            
+            try:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    json.dump(transformed_data, f, ensure_ascii=False, indent=4)
+                messagebox.showinfo("儲存成功", "成功儲存設定檔")
+            except Exception as e:
+                messagebox.showerror("儲存失敗", f"儲存設定檔失敗: {str(e)}")
 
     # 匯入點位資訊
+
+    def init_setting(self):
+        file_path = "C:/Users/kchoen/Desktop/dirtyholder/py/設定檔功能程式/newEditor/轉換設定檔.json"
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                merged_data = json.load(f)
+                # Convert merged format back to flat format for display
+                flat_data = {}
+                for floor, nodes in merged_data.items():
+                    flat_data[floor] = []
+                    for node_obj in nodes:
+                        for node_id, node_data in node_obj.items():
+                            # For each destination in nodes array, create a display node
+                            base_node = {
+                                "x": node_data["x"],
+                                "y": node_data["y"],
+                                "building": node_data["building"],
+                                "canTakeElevator": node_data["canTakeElevator"],
+                                "floor": node_data["floor"],
+                                "id": node_data["id"],
+                                "NodeId2DA": node_data["NodeId2DA"],
+                                "NodeId2DB": node_data["NodeId2DB"],
+                                "nodeIdA": node_data["nodeIdA"],
+                                "nodeIdB": node_data["nodeIdB"],
+                                "OtherBuildEndNodeId2D": node_data["OtherBuildEndNodeId2D"],
+                                "OtherBuildStartNodeId2D": node_data["OtherBuildStartNodeId2D"],
+                                "turnTo": node_data["turnTo"],
+                                "nodes": node_data["nodes"]  # Keep the nodes array
+                            }
+                            flat_data[floor].append(base_node)
+                
+                self.marked_nodes = flat_data
+            self.select_building("A樓")
+            self.selected_floor.set("A樓-1樓")
+            self.update()
+
+        except Exception as e:
+            messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
+
     def import_nodes_from_json(self):
-        """Import node data from a JSON file."""
+        """Import node data from the new JSON format."""
         file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
         if file_path:
             try:
                 with open(file_path, "r", encoding="utf-8") as f:
-                    self.marked_nodes = json.load(f)
+                    merged_data = json.load(f)
+                    # Convert merged format back to flat format for display
+                    flat_data = {}
+                    for floor, nodes in merged_data.items():
+                        flat_data[floor] = []
+                        for node_obj in nodes:
+                            for node_id, node_data in node_obj.items():
+                                # For each destination in nodes array, create a display node
+                                base_node = {
+                                    "x": node_data["x"],
+                                    "y": node_data["y"],
+                                    "building": node_data["building"],
+                                    "canTakeElevator": node_data["canTakeElevator"],
+                                    "floor": node_data["floor"],
+                                    "id": node_data["id"],
+                                    "NodeId2DA": node_data["NodeId2DA"],
+                                    "NodeId2DB": node_data["NodeId2DB"],
+                                    "nodeIdA": node_data["nodeIdA"],
+                                    "nodeIdB": node_data["nodeIdB"],
+                                    "OtherBuildEndNodeId2D": node_data["OtherBuildEndNodeId2D"],
+                                    "OtherBuildStartNodeId2D": node_data["OtherBuildStartNodeId2D"],
+                                    "turnTo": node_data["turnTo"],
+                                    "nodes": node_data["nodes"]  # Keep the nodes array
+                                }
+                                flat_data[floor].append(base_node)
+                    
+                    self.marked_nodes = flat_data
                     self.update()
-                messagebox.showinfo("Import Complete", "Nodes have been successfully imported.")
+                messagebox.showinfo("匯入成功", "匯入設定檔成功")
             except Exception as e:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
-    def import_nodes_from_setting(self):
-        """Import node data from a JSON file."""
-        file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
-        if file_path:
-            try:
-                with open(file_path, "r", encoding="utf-8") as f:
-                    raw_data = json.load(f)
-                    
-                messagebox.showinfo("Import Complete", "Nodes have been successfully imported.")
 
-            except Exception as e:
-                messagebox.showerror("Import Error", f"匯入SETTING失敗: {e}")
-                return
-            for node in raw_data:
-                building = node.get("building", "Unknown")
-                floor = node.get("floor", "Unknown")
-                logo_position = node.get("logoPositionA", {})
-
-                if not logo_position:
-                    continue
-
-                transformed_x, transformed_y = self.transform_position(logo_position)
-                floor_key = self.map_building_floor(building, floor)
-                
-
-                new_node = {
-                    "x": transformed_x,
-                    "y": transformed_y,
-                    "destination": node.get("destination", "Unknown"),
-                    "building": floor_key.split("-")[0],
-                    "bureau": node.get("bureau", "公共空間"),
-                    "canTakeElevator": node.get("canTakeElevator", "Unknown"),
-                    "floor": floor_key,
-                    "id": len(self.marked_nodes[floor_key]) + 1,
-                    "NodeId2DA": node.get("NodeId2DA", 0),
-                    "NodeId2DB": node.get("NodeId2DB", 0),
-                    "nodeIdA": node.get("nodeIdA", 0),
-                    "nodeIdB": node.get("nodeIdB", 0),
-                    "OtherBuildEndNodeId2D": node.get("OtherBuildEndNodeId2D", 0),
-                    "OtherBuildStartNodeId2D": node.get("OtherBuildStartNodeId2D", 0),
-                    "turnTo": node.get("turnTo", 0)
-                }
-
-                self.marked_nodes[floor_key].append(new_node)
-
-    def transform_position(self,logo_position):
-        x, y, z = logo_position['x'], logo_position['y'], logo_position['z']
-        
-        if x > 0:
-            transformed_y = 1430 - (x / 11) * 900
-        else:
-            transformed_y = (-x / 11) * 900 - 400
-
-        transformed_x = 100 + ((-z) / 8) * 800
-
-        return transformed_x, transformed_y
-
-    def map_building_floor(self,building, floor):
-        building_mapping = {0: "A樓", 1: "B樓", 2: "A樓"}
-        building_name = building_mapping.get(building, f"Unknown樓")
-        return f"{building_name}-{floor}樓"
-
-    
     def update(self):
         try:
             self.select_floor(self.selected_floor.get())
