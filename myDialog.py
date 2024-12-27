@@ -13,18 +13,18 @@ class NodeDialog:
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # Create position coordinates section first
-        ttk.Label(main_frame, text="Position Coordinates").grid(row=0, column=0, columnspan=2, sticky=tk.W)
+        ttk.Label(main_frame, text="顯示座標位置(X:[0,1500],Y:[0,1000])").grid(row=0, column=0, columnspan=2, sticky=tk.W)
         coord_frame = ttk.Frame(main_frame)
         coord_frame.grid(row=1, column=0, columnspan=2, sticky=(tk.W, tk.E))
         
         # X coordinate
-        ttk.Label(coord_frame, text="X:").grid(row=0, column=0, sticky=tk.W)
+        ttk.Label(coord_frame, text="X座標:").grid(row=0, column=0, sticky=tk.W)
         self.x_entry = ttk.Entry(coord_frame, width=10)
         self.x_entry.insert(0, str(node_data.get('x', '')))
         self.x_entry.grid(row=0, column=1, padx=5)
         
         # Y coordinate
-        ttk.Label(coord_frame, text="Y:").grid(row=0, column=2, sticky=tk.W)
+        ttk.Label(coord_frame, text="Y座標:").grid(row=0, column=2, sticky=tk.W)
         self.y_entry = ttk.Entry(coord_frame, width=10)
         self.y_entry.insert(0, str(node_data.get('y', '')))
         self.y_entry.grid(row=0, column=3, padx=5)
@@ -41,7 +41,7 @@ class NodeDialog:
             row += 1
         
         # Create nodes section (destinations and bureaus)
-        ttk.Label(main_frame, text="Destinations").grid(row=row, column=0, columnspan=2, sticky=tk.W)
+        ttk.Label(main_frame, text="目的地名稱").grid(row=row, column=0, columnspan=2, sticky=tk.W)
         row += 1
         
         self.nodes_frame = ttk.Frame(main_frame)
@@ -54,14 +54,14 @@ class NodeDialog:
         # Add destination button
         button_frame = ttk.Frame(main_frame)
         button_frame.grid(row=row+1, column=0, columnspan=2, sticky=(tk.W, tk.E))
-        ttk.Button(button_frame, text="Add Destination", command=self.add_destination_entry).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="新增目的地名稱", command=self.add_destination_entry).pack(side=tk.LEFT)
         
         # OK/Cancel buttons
         button_frame = ttk.Frame(main_frame)
         button_frame.grid(row=row+2, column=0, columnspan=2, sticky=(tk.W, tk.E))
-        ttk.Button(button_frame, text="OK", command=self.on_ok).pack(side=tk.LEFT)
-        ttk.Button(button_frame, text="Cancel", command=self.on_cancel).pack(side=tk.LEFT)
-        ttk.Button(button_frame, text="Delete", command=self.on_delete).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="確認", command=self.on_ok).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="取消", command=self.on_cancel).pack(side=tk.LEFT)
+        ttk.Button(button_frame, text="刪除節點", command=self.on_delete).pack(side=tk.LEFT)
         
         # Make dialog modal
         self.top.transient(parent)
@@ -73,20 +73,20 @@ class NodeDialog:
         entry_frame.pack(fill=tk.X)
         
         # Add labels for each field
-        ttk.Label(entry_frame, text="Destination:").pack(side=tk.LEFT)
+        ttk.Label(entry_frame, text="目的地名稱:").pack(side=tk.LEFT)
         dest_entry = ttk.Entry(entry_frame, width=30)
         if dest_data:
             dest_entry.insert(0, dest_data['destination'])
         dest_entry.pack(side=tk.LEFT, padx=5)
         
-        ttk.Label(entry_frame, text="Bureau:").pack(side=tk.LEFT)
+        ttk.Label(entry_frame, text="局處分類:").pack(side=tk.LEFT)
         bureau_entry = ttk.Entry(entry_frame, width=30)
         if dest_data:
             bureau_entry.insert(0, dest_data['bureau'])
         bureau_entry.pack(side=tk.LEFT, padx=5)
         
         # Add remove button for this specific entry
-        remove_btn = ttk.Button(entry_frame, text="Remove", 
+        remove_btn = ttk.Button(entry_frame, text="移除", 
                               command=lambda f=entry_frame, e=(dest_entry, bureau_entry): 
                               self.remove_specific_destination(f, e))
         remove_btn.pack(side=tk.LEFT, padx=5)
