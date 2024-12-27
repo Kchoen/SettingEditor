@@ -87,6 +87,8 @@ class BuildingFloorGUI:
         file_menu = tk.Menu(self.menu_bar, tearoff=0)
         file_menu.add_command(label="儲存點位設定", command=self.save_nodes_to_json)
         file_menu.add_command(label="匯入點位設定", command=self.import_nodes_from_json)
+        file_menu.add_command(label="轉換設定檔", command=self.transform_nodes_from_setting)
+        file_menu.add_command(label="匯出為初始設定檔格式", command=self.export_initial_format)
         self.menu_bar.add_cascade(label="儲存/匯入設定檔", menu=file_menu)
         self.root.config(menu=self.menu_bar)
     # 初始化AB棟選項及按鈕
@@ -281,7 +283,67 @@ class BuildingFloorGUI:
                 #     node["destination"] = new_name
                 #     self.select_floor(None)
                 return
+    def export_initial_format(self):
+        """Export the data in initial setting format."""
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".json",
+            filetypes=[("JSON files", "*.json")]
+        )
+        if file_path:
+            try:
+                transformed_data = self.transform_to_initial_format(self.marked_nodes)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    json.dump(transformed_data, f, ensure_ascii=False, indent=4)
+                messagebox.showinfo("匯出成功", "成功匯出為初始設定檔格式")
+            except Exception as e:
+                messagebox.showerror("匯出失敗", f"匯出失敗: {str(e)}") 
+    def transform_to_initial_format(self,marked_nodes):
+        """Transform the marked nodes data into the initial setting format."""
+        result = []
+        
+        # Process each floor's nodes
+        for floor_name, floor_nodes in marked_nodes.items():
+            floor_num = int(''.join(filter(str.isdigit, floor_name)))
+            building_num = 0 if 'A樓' in floor_name else 1
             
+            for node in floor_nodes:
+                # Get node positions
+                node_id = str(node['nodeIdA'] if building_num == 0 else node['nodeIdB'])
+                
+                # Process each destination in the node
+                for dest in node.get('nodes', []):
+                    transformed_node = {
+                        "building": building_num,
+                        "bureau": dest.get('bureau', ''),
+                        "canTakeElevator": node.get('canTakeElevator', '0'),
+                        "destination": dest.get('destination', ''),
+                        "elevatorA": 0,  # Default values, can be updated if needed
+                        "elevatorB": 0,
+                        "enable": dest.get('enable', True),
+                        "englishDestination": dest.get('englishDestination', ''),
+                        "floor": floor_num,
+                        "id": node.get('id', 0),
+                        "logoPositionA": {
+                            "x": 0,  # Default values, can be updated if needed
+                            "y": 0,
+                            "z": 0
+                        },
+                        "logoPositionB": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "NodeId2DA": node.get('NodeId2DA', 0),
+                        "NodeId2DB": node.get('NodeId2DB', 0),
+                        "nodeIdA": node.get('nodeIdA', 0),
+                        "nodeIdB": node.get('nodeIdB', 0),
+                        "OtherBuildEndNodeId2D": node.get('OtherBuildEndNodeId2D', 0),
+                        "OtherBuildStartNodeId2D": node.get('OtherBuildStartNodeId2D', 0),
+                        "turnTo": node.get('turnTo', 0)
+                    }
+                    result.append(transformed_node)
+        
+        return result
     # 儲存點位資訊
     def save_nodes_to_json(self):
         """Save the marked nodes to a JSON file in the transformed format."""
@@ -329,45 +391,6 @@ class BuildingFloorGUI:
                 messagebox.showerror("儲存失敗", f"儲存設定檔失敗: {str(e)}")
 
     # 匯入點位資訊
-
-    def init_setting(self):
-        file_path = "C:/Users/kchoen/Desktop/dirtyholder/py/設定檔功能程式/newEditor/轉換設定檔.json"
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                merged_data = json.load(f)
-                # Convert merged format back to flat format for display
-                flat_data = {}
-                for floor, nodes in merged_data.items():
-                    flat_data[floor] = []
-                    for node_obj in nodes:
-                        for node_id, node_data in node_obj.items():
-                            # For each destination in nodes array, create a display node
-                            base_node = {
-                                "x": node_data["x"],
-                                "y": node_data["y"],
-                                "building": node_data["building"],
-                                "canTakeElevator": node_data["canTakeElevator"],
-                                "floor": node_data["floor"],
-                                "id": node_data["id"],
-                                "NodeId2DA": node_data["NodeId2DA"],
-                                "NodeId2DB": node_data["NodeId2DB"],
-                                "nodeIdA": node_data["nodeIdA"],
-                                "nodeIdB": node_data["nodeIdB"],
-                                "OtherBuildEndNodeId2D": node_data["OtherBuildEndNodeId2D"],
-                                "OtherBuildStartNodeId2D": node_data["OtherBuildStartNodeId2D"],
-                                "turnTo": node_data["turnTo"],
-                                "nodes": node_data["nodes"]  # Keep the nodes array
-                            }
-                            flat_data[floor].append(base_node)
-                
-                self.marked_nodes = flat_data
-            self.select_building("A樓")
-            self.selected_floor.set("A樓-1樓")
-            self.update()
-
-        except Exception as e:
-            messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
-
     def import_nodes_from_json(self):
         """Import node data from the new JSON format."""
         file_path = filedialog.askopenfilename(filetypes=[("JSON files", "*.json")])
@@ -381,30 +404,168 @@ class BuildingFloorGUI:
                         flat_data[floor] = []
                         for node_obj in nodes:
                             for node_id, node_data in node_obj.items():
-                                # For each destination in nodes array, create a display node
-                                base_node = {
-                                    "x": node_data["x"],
-                                    "y": node_data["y"],
-                                    "building": node_data["building"],
-                                    "canTakeElevator": node_data["canTakeElevator"],
-                                    "floor": node_data["floor"],
-                                    "id": node_data["id"],
-                                    "NodeId2DA": node_data["NodeId2DA"],
-                                    "NodeId2DB": node_data["NodeId2DB"],
-                                    "nodeIdA": node_data["nodeIdA"],
-                                    "nodeIdB": node_data["nodeIdB"],
-                                    "OtherBuildEndNodeId2D": node_data["OtherBuildEndNodeId2D"],
-                                    "OtherBuildStartNodeId2D": node_data["OtherBuildStartNodeId2D"],
-                                    "turnTo": node_data["turnTo"],
-                                    "nodes": node_data["nodes"]  # Keep the nodes array
-                                }
-                                flat_data[floor].append(base_node)
+                                # Convert positions to float to ensure compatibility
+                                node_data['x'] = float(node_data['x'])
+                                node_data['y'] = float(node_data['y'])
+                                flat_data[floor].append(node_data)
                     
                     self.marked_nodes = flat_data
                     self.update()
                 messagebox.showinfo("匯入成功", "匯入設定檔成功")
             except Exception as e:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
+
+    def init_setting(self):
+        file_path = "C:/Users/kchoen/Desktop/dirtyholder/py/設定檔功能程式/newEditor/最新儲存設定檔.json"
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                merged_data = json.load(f)
+                flat_data = {}
+                for floor, nodes in merged_data.items():
+                    flat_data[floor] = []
+                    for node_obj in nodes:
+                        for node_id, node_data in node_obj.items():
+                            # Convert positions to float to ensure compatibility
+                            node_data['x'] = float(node_data['x'])
+                            node_data['y'] = float(node_data['y'])
+                            flat_data[floor].append(node_data)
+                
+                self.marked_nodes = flat_data
+            self.select_building("A樓")
+            self.selected_floor.set("A樓-1樓")
+            self.update()
+        except Exception as e:
+            messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
+
+    def transform_nodes_from_setting(self):
+        """Transform the settings from source format to target format with elevator and logo positions."""
+        setting_file_path = filedialog.askopenfilename(
+            title="Select setting file (設定檔說明)",
+            filetypes=[("JSON files", "*.json")]
+        )
+        if not setting_file_path:
+            return
+            
+        position_file_path = filedialog.askopenfilename(
+            title="Select position file (轉換設定檔 for x,y coordinates)",
+            filetypes=[("JSON files", "*.json")]
+        )
+        if not position_file_path:
+            return
+
+        try:
+            # Read source data and position data
+            with open(setting_file_path, "r", encoding="utf-8") as f:
+                source_data = json.load(f)
+            with open(position_file_path, "r", encoding="utf-8") as f:
+                position_data = json.load(f)
+
+            # Transform data
+            transformed_data = {}
+
+            # Create position lookup dictionary
+            position_lookup = {}
+            for floor, nodes in position_data.items():
+                for node_obj in nodes:
+                    for node_id, node_data in node_obj.items():
+                        key = (floor, node_id)
+                        position_lookup[key] = {
+                            "x": node_data["x"],
+                            "y": node_data["y"]
+                        }
+
+            # Group nodes by floor
+            floor_groups = {}
+            for node in source_data:
+                if not node.get('enable', True):  # Skip disabled nodes
+                    continue
+
+                floor_key = f"{'A樓' if node['building'] == 0 else 'B樓'}-{node['floor']}樓"
+                if floor_key not in floor_groups:
+                    floor_groups[floor_key] = []
+
+                # Node ID based on building
+                node_id = str(node['nodeIdA'] if node['building'] == 0 else node['nodeIdB'])
+                
+                # Get position from lookup
+                position = position_lookup.get((floor_key, node_id), {"x": 0, "y": 0})
+
+                # Create transformed node structure
+                transformed_node = {
+                    node_id: {
+                        "x": position["x"],
+                        "y": position["y"],
+                        "building": 'A樓' if node['building'] == 0 else 'B樓',
+                        "canTakeElevator": str(node.get('canTakeElevator', '0')),
+                        "elevatorA": node.get('elevatorA', 0),
+                        "elevatorB": node.get('elevatorB', 0),
+                        "floor": floor_key,
+                        "id": node.get('id', 0),
+                        "logoPositionA": node.get('logoPositionA', {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }),
+                        "logoPositionB": node.get('logoPositionB', {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }),
+                        "NodeId2DA": node.get('NodeId2DA', 0),
+                        "NodeId2DB": node.get('NodeId2DB', 0),
+                        "nodeIdA": node.get('nodeIdA', 0),
+                        "nodeIdB": node.get('nodeIdB', 0),
+                        "OtherBuildEndNodeId2D": node.get('OtherBuildEndNodeId2D', 0),
+                        "OtherBuildStartNodeId2D": node.get('OtherBuildStartNodeId2D', 0),
+                        "turnTo": node.get('turnTo', 0),
+                        "nodes": [
+                            {
+                                "bureau": node.get('bureau', ''),
+                                "destination": node.get('destination', ''),
+                                "englishDestination": node.get('englishDestination', ''),
+                                "enable": node.get('enable', True)
+                            }
+                        ]
+                    }
+                }
+
+                # Try to find and merge with existing node
+                existing_node = None
+                for idx, n in enumerate(floor_groups[floor_key]):
+                    if node_id in n:
+                        existing_node = n
+                        break
+
+                if existing_node:
+                    # Add destination to existing node's nodes array if not already present
+                    new_dest = {
+                        "bureau": node.get('bureau', ''),
+                        "destination": node.get('destination', ''),
+                        "englishDestination": node.get('englishDestination', ''),
+                        "enable": node.get('enable', True)
+                    }
+                    if new_dest not in existing_node[node_id]['nodes']:
+                        existing_node[node_id]['nodes'].append(new_dest)
+                else:
+                    # Add new node to floor group
+                    floor_groups[floor_key].append(transformed_node)
+
+            # Convert floor_groups to transformed_data
+            for floor_key, nodes in floor_groups.items():
+                transformed_data[floor_key] = nodes
+
+            # Save transformed data
+            save_path = filedialog.asksaveasfilename(
+                defaultextension=".json",
+                filetypes=[("JSON files", "*.json")]
+            )
+            if save_path:
+                with open(save_path, "w", encoding="utf-8") as f:
+                    json.dump(transformed_data, f, ensure_ascii=False, indent=4)
+                messagebox.showinfo("轉換成功", "已成功轉換並儲存設定檔")
+
+        except Exception as e:
+            messagebox.showerror("Error", f"轉換設定檔失敗: {str(e)}")
 
     def update(self):
         try:
