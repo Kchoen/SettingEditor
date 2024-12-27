@@ -6,7 +6,7 @@ class NodeDialog:
         self.top = tk.Toplevel(parent)
         self.result = {"isDelete": False, "data": node_data}
         self.node_data = node_data.copy()
-        self.cancelled = True  # Add flag to track if dialog was cancelled
+        self.cancelled = True
         
         # Create main frame
         main_frame = ttk.Frame(self.top, padding="10")
@@ -51,11 +51,10 @@ class NodeDialog:
         for dest_data in node_data.get('nodes', []):
             self.add_destination_entry(dest_data)
         
-        # Add/Remove destination buttons
+        # Add destination button
         button_frame = ttk.Frame(main_frame)
         button_frame.grid(row=row+1, column=0, columnspan=2, sticky=(tk.W, tk.E))
         ttk.Button(button_frame, text="Add Destination", command=self.add_destination_entry).pack(side=tk.LEFT)
-        ttk.Button(button_frame, text="Remove Destination", command=self.remove_destination_entry).pack(side=tk.LEFT)
         
         # OK/Cancel buttons
         button_frame = ttk.Frame(main_frame)
@@ -86,12 +85,17 @@ class NodeDialog:
             bureau_entry.insert(0, dest_data['bureau'])
         bureau_entry.pack(side=tk.LEFT, padx=5)
         
+        # Add remove button for this specific entry
+        remove_btn = ttk.Button(entry_frame, text="Remove", 
+                              command=lambda f=entry_frame, e=(dest_entry, bureau_entry): 
+                              self.remove_specific_destination(f, e))
+        remove_btn.pack(side=tk.LEFT, padx=5)
+        
         self.node_entries.append((dest_entry, bureau_entry))
     
-    def remove_destination_entry(self):
-        if self.node_entries:
-            dest_entry, bureau_entry = self.node_entries.pop()
-            dest_entry.master.destroy()
+    def remove_specific_destination(self, frame, entries):
+        self.node_entries.remove(entries)
+        frame.destroy()
     
     def on_ok(self):
         try:
@@ -129,7 +133,6 @@ class NodeDialog:
             tk.messagebox.showerror("Error", "Invalid coordinate values. Please enter numbers only.")
 
     def on_cancel(self):
-        # Keep the original data on cancel
         self.result = {"isDelete": False, "data": self.node_data}
         self.cancelled = True
         self.top.destroy()
