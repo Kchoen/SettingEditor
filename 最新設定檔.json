@@ -421,6 +421,43 @@
             }
         },
         {
+            "48": {
+                "x": 669.0,
+                "y": 772.4545454545455,
+                "building": "B樓",
+                "canTakeElevator": "0",
+                "elevatorA": 0,
+                "elevatorB": 0,
+                "floor": "B樓-1樓",
+                "id": 134,
+                "logoPositionA": {
+                    "x": -14.33,
+                    "y": -2.75,
+                    "z": -5.69
+                },
+                "logoPositionB": {
+                    "x": -14.33,
+                    "y": -2.75,
+                    "z": -5.69
+                },
+                "NodeId2DA": 7,
+                "NodeId2DB": 7,
+                "nodeIdA": 48,
+                "nodeIdB": 48,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "公共空間",
+                        "destination": "市府員工子女托嬰中心",
+                        "englishDestination": "Baby Care Center",
+                        "enable": false
+                    }
+                ]
+            }
+        },
+        {
             "14": {
                 "x": 616.2099999999999,
                 "y": 422.14181818181817,
@@ -901,6 +938,43 @@
             }
         },
         {
+            "16": {
+                "x": 630.3,
+                "y": 518.1636363636362,
+                "building": "B樓",
+                "canTakeElevator": "10、11、15、16",
+                "elevatorA": 11,
+                "elevatorB": 15,
+                "floor": "B樓-3樓",
+                "id": 45,
+                "logoPositionA": {
+                    "x": -11.222,
+                    "y": -1.6103,
+                    "z": -5.303
+                },
+                "logoPositionB": {
+                    "x": -11.222,
+                    "y": -1.6103,
+                    "z": -5.303
+                },
+                "NodeId2DA": 35,
+                "NodeId2DB": 12,
+                "nodeIdA": 16,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "代筆室/總機",
+                        "englishDestination": "",
+                        "enable": false
+                    }
+                ]
+            }
+        },
+        {
             "32": {
                 "x": 931.05,
                 "y": 69.15363636363634,
@@ -1338,6 +1412,12 @@
                         "destination": "區里行政科",
                         "englishDestination": "Districts and Villages Affairs Division",
                         "enable": true
+                    },
+                    {
+                        "bureau": "民政局",
+                        "destination": "里長服務中心",
+                        "englishDestination": "Service Center of Village Chief",
+                        "enable": false
                     }
                 ]
             }
@@ -1710,6 +1790,112 @@
             }
         }
     ],
+    "B樓-2樓": [
+        {
+            "6": {
+                "x": 666.06,
+                "y": 772.9454545454546,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "elevatorA": 14,
+                "elevatorB": 14,
+                "floor": "B樓-2樓",
+                "id": 80,
+                "logoPositionA": {
+                    "x": -14.336,
+                    "y": -2.2181,
+                    "z": -5.6606
+                },
+                "logoPositionB": {
+                    "x": -14.336,
+                    "y": -2.2181,
+                    "z": -5.6606
+                },
+                "NodeId2DA": 13,
+                "NodeId2DB": 13,
+                "nodeIdA": 6,
+                "nodeIdB": 6,
+                "OtherBuildEndNodeId2D": 1,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "秘書室",
+                        "englishDestination": "Secretariat",
+                        "enable": false
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "人事室",
+                        "englishDestination": "Personnel Office",
+                        "enable": false
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "會計室",
+                        "englishDestination": "Accounting Office",
+                        "enable": false
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "政風室",
+                        "englishDestination": "Civil Service Ethics Office",
+                        "enable": false
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "系統規劃科",
+                        "englishDestination": "System Planning Division",
+                        "enable": false
+                    }
+                ]
+            }
+        },
+        {
+            "4": {
+                "x": 891.0300000000001,
+                "y": 772.9454545454546,
+                "building": "B樓",
+                "canTakeElevator": "9、11、14、16",
+                "elevatorA": 14,
+                "elevatorB": 14,
+                "floor": "B樓-2樓",
+                "id": 38,
+                "logoPositionA": {
+                    "x": -14.336,
+                    "y": -2.2181,
+                    "z": -7.9103
+                },
+                "logoPositionB": {
+                    "x": -14.336,
+                    "y": -2.2181,
+                    "z": -7.9103
+                },
+                "NodeId2DA": 13,
+                "NodeId2DB": 13,
+                "nodeIdA": 4,
+                "nodeIdB": 4,
+                "OtherBuildEndNodeId2D": 1,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "勞工局",
+                        "destination": "電話服務中心",
+                        "englishDestination": "Call Center Of Labor Affairs Bureau",
+                        "enable": false
+                    },
+                    {
+                        "bureau": "政風處",
+                        "destination": "政風業務訪談室",
+                        "englishDestination": "Government Ethics Interview Room",
+                        "enable": false
+                    }
+                ]
+            }
+        }
+    ],
     "B樓-6樓": [
         {
             "16": {
@@ -1744,6 +1930,12 @@
                         "destination": "數位匯流科",
                         "englishDestination": "Infrastructure and Network Security Division",
                         "enable": true
+                    },
+                    {
+                        "bureau": "數位治理局",
+                        "destination": "整合應用科",
+                        "englishDestination": "Application Integration Division",
+                        "enable": false
                     },
                     {
                         "bureau": "數位治理局",
@@ -2178,6 +2370,82 @@
             }
         }
     ],
+    "A樓-2樓": [
+        {
+            "16": {
+                "x": 667.64,
+                "y": 894.6636363636363,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "elevatorA": 7,
+                "elevatorB": 7,
+                "floor": "A樓-2樓",
+                "id": 36,
+                "logoPositionA": {
+                    "x": 6.543,
+                    "y": -2.2181,
+                    "z": -5.6764
+                },
+                "logoPositionB": {
+                    "x": 6.543,
+                    "y": -2.2181,
+                    "z": -5.6764
+                },
+                "NodeId2DA": 7,
+                "NodeId2DB": 7,
+                "nodeIdA": 16,
+                "nodeIdB": 16,
+                "OtherBuildEndNodeId2D": 39,
+                "OtherBuildStartNodeId2D": 0,
+                "turnTo": 1,
+                "nodes": [
+                    {
+                        "bureau": "秘書處",
+                        "destination": "代筆室",
+                        "englishDestination": "",
+                        "enable": false
+                    }
+                ]
+            }
+        },
+        {
+            "12": {
+                "x": 890.75,
+                "y": 95.79090909090928,
+                "building": "A樓",
+                "canTakeElevator": "2、4、5、7",
+                "elevatorA": 4,
+                "elevatorB": 2,
+                "floor": "A樓-2樓",
+                "id": 35,
+                "logoPositionA": {
+                    "x": 16.307,
+                    "y": -2.2181,
+                    "z": -7.9075
+                },
+                "logoPositionB": {
+                    "x": 16.307,
+                    "y": -2.2181,
+                    "z": -7.9075
+                },
+                "NodeId2DA": 25,
+                "NodeId2DB": 27,
+                "nodeIdA": 12,
+                "nodeIdB": 12,
+                "OtherBuildEndNodeId2D": 44,
+                "OtherBuildStartNodeId2D": 1,
+                "turnTo": 2,
+                "nodes": [
+                    {
+                        "bureau": "社會局",
+                        "destination": "綜合企劃科",
+                        "englishDestination": "Comprehensive Planning Division",
+                        "enable": true
+                    }
+                ]
+            }
+        }
+    ],
     "B樓-7樓": [
         {
             "4": {
@@ -2403,45 +2671,6 @@
                         "bureau": "政風處",
                         "destination": "第四科",
                         "englishDestination": "Fourth Division",
-                        "enable": true
-                    }
-                ]
-            }
-        }
-    ],
-    "A樓-2樓": [
-        {
-            "12": {
-                "x": 890.75,
-                "y": 95.79090909090928,
-                "building": "A樓",
-                "canTakeElevator": "2、4、5、7",
-                "elevatorA": 4,
-                "elevatorB": 2,
-                "floor": "A樓-2樓",
-                "id": 35,
-                "logoPositionA": {
-                    "x": 16.307,
-                    "y": -2.2181,
-                    "z": -7.9075
-                },
-                "logoPositionB": {
-                    "x": 16.307,
-                    "y": -2.2181,
-                    "z": -7.9075
-                },
-                "NodeId2DA": 25,
-                "NodeId2DB": 27,
-                "nodeIdA": 12,
-                "nodeIdB": 12,
-                "OtherBuildEndNodeId2D": 44,
-                "OtherBuildStartNodeId2D": 1,
-                "turnTo": 2,
-                "nodes": [
-                    {
-                        "bureau": "社會局",
-                        "destination": "綜合企劃科",
-                        "englishDestination": "Comprehensive Planning Division",
                         "enable": true
                     }
                 ]

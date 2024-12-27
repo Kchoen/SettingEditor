@@ -138,7 +138,7 @@ class BuildingFloorGUI:
         self.canvas = tk.Canvas(self.center_frame, bg="white")
         self.canvas.pack(expand=True, fill=tk.BOTH)
         self.canvas.bind("<Motion>", self.hover_node)
-        self.canvas.bind("<Button-1>", self.create_mark)
+        self.canvas.bind("<Button-1>", self.edit_node_properties)
         self.hover_label = tk.Label(self.center_frame, text="", bg="yellow", relief="solid")
         self.hover_label.pack_forget()
         
@@ -190,58 +190,58 @@ class BuildingFloorGUI:
 
 
 
-    # 新增點位
-    def create_mark(self, event):
-        """Create a new node after clicking."""
-        if not self.selected_floor.get():
-            messagebox.showerror("Error", "Please select a building first!")
-            return
-        if self.isHover:
-            self.edit_node_properties(event)
-            return
+    # # 新增點位
+    # def create_mark(self, event):
+    #     """Create a new node after clicking."""
+    #     if not self.selected_floor.get():
+    #         messagebox.showerror("Error", "Please select a building first!")
+    #         return
+    #     if self.isHover:
+    #         self.edit_node_properties(event)
+    #         return
             
-        bureau = simpledialog.askstring("局處", "輸入局處名稱:")
-        if not bureau:
-            return
+    #     bureau = simpledialog.askstring("局處", "輸入局處名稱:")
+    #     if not bureau:
+    #         return
             
-        node_name = simpledialog.askstring("點位名稱", "輸入名稱:")
-        if node_name:
-            # Get new node ID based on building
-            max_id = max([
-                (node['nodeIdA'] if 'A樓' in node['building'] else node['nodeIdB'])
-                for floor_nodes in self.marked_nodes.values()
-                for node in floor_nodes
-            ], default=0) + 1
+    #     node_name = simpledialog.askstring("點位名稱", "輸入名稱:")
+    #     if node_name:
+    #         # Get new node ID based on building
+    #         max_id = max([
+    #             (node['nodeIdA'] if 'A樓' in node['building'] else node['nodeIdB'])
+    #             for floor_nodes in self.marked_nodes.values()
+    #             for node in floor_nodes
+    #         ], default=0) + 1
             
-            node = {
-                "x": event.x,
-                "y": event.y,
-                "building": self.current_building,
-                "canTakeElevator": "0",
-                "floor": self.selected_floor.get(),
-                "id": len(self.marked_nodes[self.selected_floor.get()]) + 1,
-                "NodeId2DA": 0,
-                "NodeId2DB": 0,
-                "nodeIdA": max_id if 'A樓' in self.current_building else 0,
-                "nodeIdB": max_id if 'B樓' in self.current_building else 0,
-                "OtherBuildEndNodeId2D": 0,
-                "OtherBuildStartNodeId2D": 0,
-                "turnTo": 0,
-                "nodes": [{"bureau": bureau, "destination": node_name}]
-            }
+    #         node = {
+    #             "x": event.x,
+    #             "y": event.y,
+    #             "building": self.current_building,
+    #             "canTakeElevator": "0",
+    #             "floor": self.selected_floor.get(),
+    #             "id": len(self.marked_nodes[self.selected_floor.get()]) + 1,
+    #             "NodeId2DA": 0,
+    #             "NodeId2DB": 0,
+    #             "nodeIdA": max_id if 'A樓' in self.current_building else 0,
+    #             "nodeIdB": max_id if 'B樓' in self.current_building else 0,
+    #             "OtherBuildEndNodeId2D": 0,
+    #             "OtherBuildStartNodeId2D": 0,
+    #             "turnTo": 0,
+    #             "nodes": [{"bureau": bureau, "destination": node_name}]
+    #         }
             
-            self.marked_nodes.get(self.selected_floor.get()).append(node)
-            self.canvas.create_oval(
-                event.x-MARK_SIZE, y=event.y-MARK_SIZE, 
-                x2=event.x+MARK_SIZE, y2=event.y+MARK_SIZE, 
-                fill="red"
-            )
-            self.canvas.create_text(
-                event.x, event.y-2*MARK_SIZE, 
-                text=f"{node_name}", 
-                fill="blue",
-                font=("Arial", FONT_SIZE)
-            )
+    #         self.marked_nodes.get(self.selected_floor.get()).append(node)
+    #         self.canvas.create_oval(
+    #             event.x-MARK_SIZE, y=event.y-MARK_SIZE, 
+    #             x2=event.x+MARK_SIZE, y2=event.y+MARK_SIZE, 
+    #             fill="red"
+    #         )
+    #         self.canvas.create_text(
+    #             event.x, event.y-2*MARK_SIZE, 
+    #             text=f"{node_name}", 
+    #             fill="blue",
+    #             font=("Arial", FONT_SIZE)
+    #         )
     # 浮現點位資訊
     def hover_node(self, event):
         """Display node details when hovering over a marked point."""
@@ -266,7 +266,8 @@ class BuildingFloorGUI:
         self.hover_label.place_forget()
     
     def edit_node_properties(self, event):
-        
+        if not self.isHover:
+            return
         for node in self.marked_nodes.get(self.selected_floor.get(), []):
             if abs(event.x - int(node["x"])) <= MARK_SIZE and abs(event.y - int(node["y"])) <= MARK_SIZE:
                 inputs = myDialog.main(node)
@@ -416,7 +417,7 @@ class BuildingFloorGUI:
                 messagebox.showerror("Import Error", f"Failed to import nodes: {e}")
 
     def init_setting(self):
-        file_path = "C:/Users/kchoen/Desktop/dirtyholder/py/設定檔功能程式/newEditor/最新儲存設定檔.json"
+        file_path = "C:/Users/kchoen/Desktop/dirtyholder/py/設定檔功能程式/newEditor/最新設定檔.json"
         try:
             with open(file_path, "r", encoding="utf-8") as f:
                 merged_data = json.load(f)
@@ -477,8 +478,7 @@ class BuildingFloorGUI:
             # Group nodes by floor
             floor_groups = {}
             for node in source_data:
-                if not node.get('enable', True):  # Skip disabled nodes
-                    continue
+
 
                 floor_key = f"{'A樓' if node['building'] == 0 else 'B樓'}-{node['floor']}樓"
                 if floor_key not in floor_groups:
